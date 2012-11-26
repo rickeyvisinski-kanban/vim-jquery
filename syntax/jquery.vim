@@ -23,16 +23,17 @@ syn match   jQuery          /jQuery\|\$/
 
 syn match   jFunc           /\.\w\+(\@=/ contains=@jFunctions
 
-syn cluster jFunctions      contains=jAjax,jAttributes,jCore,jCSS,jData,jDeferred,jDimensions,jEffects,jEvents,jManipulation,jMiscellaneous,jOffset,jProperties,jTraversing,jUtilities
+syn cluster jFunctions      contains=jAjax,jAttributes,jCallbacks,jCore,jCSS,jData,jDeferred,jDimensions,jEffects,jEvents,jManipulation,jMiscellaneous,jOffset,jProperties,jTraversing,jUtilities
 syn keyword jAjax           contained ajaxComplete ajaxError ajaxSend ajaxStart ajaxStop ajaxSuccess
 syn keyword jAjax           contained param serialize serializeArray
 syn keyword jAjax           contained ajax ajaxPrefilter ajaxSetup ajaxSettings ajaxTransport
 syn keyword jAjax           contained get getJSON getScript load post
 syn keyword jAttributes     contained addClass attr hasClass prop removeAttr removeClass removeProp toggleClass val
+syn keyword jCallbacks      contained Callbacks add disable empty fire fireWith has lock locked remove
 syn keyword jCore           contained holdReady noConflict sub when
 syn keyword jCSS            contained css cssHooks
 syn keyword jData           contained clearQueue data dequeue hasData queue removeData
-syn keyword jDeferred       contained Deferred always done fail isRejected isResolved pipe promise reject rejectWith resolved resolveWith then
+syn keyword jDeferred       contained Deferred always done fail isRejected isResolved notify notifyWith pipe progress promise reject rejectWith resolved resolveWith state then
 syn keyword jDimensions     contained height innerHeight innerWidth outerHeight outerWidth width
 syn keyword jEffects        contained hide show toggle
 syn keyword jEffects        contained animate delay stop
@@ -41,8 +42,8 @@ syn keyword jEffects        contained slideDown slideToggle slideUp
 syn keyword jEvents         contained error resize scroll
 syn keyword jEvents         contained ready unload
 syn keyword jEvents         contained bind delegate die live one proxy trigger triggerHandler unbind undelegate
-syn keyword jEvents         contained Event currentTarget isDefaultPrevented isImmediatePropagationStopped isPropagationStopped namespace pageX pageY preventDefault relatedTarget result stopImmediatePropagation stopPropagation target timeStamp which
-syn keyword jEvents         contained blur change focus select submit
+syn keyword jEvents         contained Event currentTarget delegateTarget isDefaultPrevented isImmediatePropagationStopped isPropagationStopped namespace pageX pageY preventDefault relatedTarget result stopImmediatePropagation stopPropagation target timeStamp which
+syn keyword jEvents         contained blur change focus off on select submit
 syn keyword jEvents         contained focusin focusout keydown keypress keyup
 syn keyword jEvents         contained click dblclick hover mousedown mouseenter mouseleave mousemove mouseout mouseover mouseup
 syn keyword jManipulation   contained clone
@@ -57,7 +58,7 @@ syn keyword jProperties     contained browser context fx.interval fx.off length 
 syn keyword jTraversing     contained eq filter first has is last map not slice
 syn keyword jTraversing     contained add andSelf contents end
 syn keyword jTraversing     contained children closest find next nextAll nextUntil parent parents parentsUntil prev prevAll prevUntil siblings
-syn keyword jUtilities      contained each extend globalEval grep inArray isArray isEmptyObject isFunction isPlainObject isWindow isXMLDoc makeArray merge noop now parseJSON parseXML trim type unique
+syn keyword jUtilities      contained each extend globalEval grep inArray isArray isEmptyObject isFunction isNumeric isPlainObject isWindow isXMLDoc makeArray merge noop now parseJSON parseXML trim type unique
 
 
 syn region  javaScriptStringD          start=+"+  skip=+\\\\\|\\"+  end=+"\|$+  contains=javaScriptSpecial,@htmlPreproc,@jSelectors
@@ -90,6 +91,7 @@ if version >= 508 || !exists("did_lisp_syntax_inits")
   HiLink jAjax           Function
   HiLink jAttributes     Function
   HiLink jCore           Function
+  HiLink jCallbacks      Function
   HiLink jCSS            Function
   HiLink jData           Function
   HiLink jDeferred       Function
